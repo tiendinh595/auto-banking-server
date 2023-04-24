@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18-slim
 ENV TZ="Asia/Ho_Chi_Minh"
 WORKDIR /app
 COPY ./src ./src
