@@ -1,6 +1,6 @@
 module.exports = {
     mongoose: {
-        url: 'mongodb://server-autobanking:kub7rjx6hwn-FXE-mzc@mongo:27020/server-autobanking',
+        url: 'mongodb://server-autobanking:kub7rjx6hwn-FXE-mzc@mongo:27017/server-autobanking',
         options: {
             useNewUrlParser: true,
             useUnifiedTopology: true,
