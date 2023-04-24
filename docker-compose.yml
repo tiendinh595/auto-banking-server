@@ -9,6 +9,7 @@ services:
     depends_on:
       - mongo
     volumes:
+#      - ./:/app
       - ./src:/app/src
       - ./logs:/app/logs
     #      - ./:/app
@@ -22,7 +23,7 @@ services:
       - ./database:/data/db
       - "$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
     ports:
-      - "27017:27017"
+      - "27019:27017"
     environment:
       - MONGO_INITDB_DATABASE=server-autobanking
       - MONGO_INITDB_ROOT_USERNAME=server-autobanking
