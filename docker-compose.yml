@@ -1,0 +1,30 @@
+version: '3'
+services:
+  server:
+    image: dinhvt/wedev:auto-banking-server
+    container_name: auto-banking-server
+    restart: always
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+    #      - ./:/app
+    ports:
+      - "8083:3000"
+  mongo:
+    image: mongo
+    container_name: server-server-autobanking-mongo
+    restart: always
+    volumes:
+      - ./database:/data/db
+      - "$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
+    ports:
+      - "27020:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=server-autobanking
+      - MONGO_INITDB_ROOT_USERNAME=server-autobanking
+      - MONGO_INITDB_ROOT_PASSWORD=kub7rjx6hwn-FXE-mzc
+    command: mongod
