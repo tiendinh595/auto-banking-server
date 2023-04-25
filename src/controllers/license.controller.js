@@ -10,24 +10,35 @@ module.exports.CheckLicense = async (request, reply) => {
     let license_check = await LicenseService.checkLicense(ip, version, license_key)
     console.log('license', license)
     console.log('license_check', license_check)
-    let data_encrypted = ''
+    let data = {};
     if (license_check) {
-        data_encrypted = encryptData(ip + '|' + version + '|' + license_key)
+        data = {
+            result: ip + '|' + version + '|' + license_key,
+            permissions: license_check.permissions ?? {}
+        }
     } else {
-        data_encrypted = encryptData('invalid')
+        data = {
+            result: 'valid',
+            permissions: {}
+        }
     }
+    data = JSON.stringify(data)
+    let data_encrypted = encryptData(data)
     reply.send({d: data_encrypted})
 }
 
 module.exports.create = async (request, reply) => {
-    let {customer, ip, version} = request.body
+    let {customer, ip, version, permissions} = request.body
     let data = {
         customer: customer,
         ip: ip,
         version: version,
         license_key: generateLicenseKey(),
-        license_type: 'unlimited',
+        license_type: 'on-premise',
         license_status: 'active'
+    }
+    if (permissions) {
+        data.permissions = permissions
     }
 
     let license = await LicenseService.create(data)

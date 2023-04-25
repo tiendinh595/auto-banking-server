@@ -1,5 +1,6 @@
 'use strict'
 const controller = require('../../controllers/captcha.controller')
+
 module.exports = async function (fastify, opts) {
     fastify.post('/', {
         schema: {
@@ -15,6 +16,5 @@ module.exports = async function (fastify, opts) {
         },
         // preValidation: [fastify.authenticate]
         handler: controller.captchaSolver
-    })
+    });
 }
-
