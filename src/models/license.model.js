@@ -39,6 +39,14 @@ const licenseSchema = new mongoose.Schema({
         "limit_bank_account": {type: Number, default: -1}, // -1: unlimited
         "connections_allow": [{type: String, default: ['all'], enum: ['webhook', 'email', 'telegram', 'google_sheet', 'google_chat', 'woocommerce', 'larksuite_chatbot', 'larksuite_bitable', 'all']}],
         "limit_transaction_of_month": {type: Number, default: -1}, // -1: unlimited
+    },
+    backend_url: {
+        type: String,
+        required: true
+    },
+    frontend_url: {
+        type: String,
+        required: true
     }
 }, {
     index: {unique: true, fields: [{bank_name: 1}, {account_number: 1}]},

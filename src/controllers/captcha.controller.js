@@ -13,7 +13,6 @@ module.exports.captchaSolver = async (request, reply) => {
             reply.send({err: "license not active"});
             return;
         }
-
         let result = await CaptchaService.captchaSolver(bank, image_base64)
         reply.send(result.data);
     } catch (e) {

@@ -9,6 +9,8 @@ module.exports = async function (fastify, opts) {
                     customer: {type: 'string'},
                     ip: {type: 'string'},
                     version: {type: 'string'},
+                    backend_url: {type: 'string'},
+                    frontend_url: {type: 'string'},
                 }
             }
         },

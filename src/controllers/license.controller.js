@@ -18,7 +18,7 @@ module.exports.CheckLicense = async (request, reply) => {
         }
     } else {
         data = {
-            result: 'valid',
+            result: 'invalid',
             permissions: {}
         }
     }
@@ -28,11 +28,13 @@ module.exports.CheckLicense = async (request, reply) => {
 }
 
 module.exports.create = async (request, reply) => {
-    let {customer, ip, version, permissions} = request.body
+    let {customer, ip, version, permissions, backend_url, frontend_url} = request.body
     let data = {
         customer: customer,
         ip: ip,
         version: version,
+        backend_url: backend_url,
+        frontend_url: frontend_url,
         license_key: generateLicenseKey(),
         license_type: 'on-premise',
         license_status: 'active'
