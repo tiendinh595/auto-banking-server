@@ -14,6 +14,7 @@ module.exports = async function (fastify, opts) {
         .register(require('./plugins/support'))
         .register(require('./plugins/sensible'))
         .register(require('./plugins/mongo'))
+        .register(require('./plugins/telegram_bot'))
 
     fastify.register(AutoLoad, {
         dir: path.join(__dirname, 'routes'),
